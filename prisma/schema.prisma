@@ -7,5 +7,14 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("User ID=root;Password=1234;Host=localhost;Port=5432;Database=myDataBase;Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;")
+  url          = "postgresql://postgres:legaltech@localhost:5432/mydb?schema=legaltech"
+}
+
+model Search {
+  id    Int     @default(autoincrement()) @id
+  priceMin Int
+  priceMax Int
+  rooms  String
+  type String
+  label String
 }

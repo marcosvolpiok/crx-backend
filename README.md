@@ -7,3 +7,5 @@ sudo docker network create legaltech
 sudo docker build -t backend .
 sudo docker run --net legaltech --name backend -it -p 3000:3000 backend
 sudo docker start backend
+
+npx prisma migrate dev --name init
