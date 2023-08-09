@@ -9,7 +9,8 @@ module.exports = {
 	extends: [
 		//'plugin:@typescript-eslint/recommended',
 		//'plugin:prettier/recommended',
-		'eslint:all',
+		//'eslint:all',
+		'eslint:recommended',
 		'prettier',
 	],
 	root: true,
