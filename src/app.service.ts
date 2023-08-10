@@ -15,6 +15,10 @@ export class AppService {
 		})
 	}
 
+	async searchAll(): Promise<Search[] | null> {
+		return this.prisma.search.findMany()
+	}
+
 	async createSearch(data: any): Promise<Search> {
 		return this.prisma.search.create({
 			data,

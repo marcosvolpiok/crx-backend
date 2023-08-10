@@ -7,6 +7,11 @@ import { User as UserModel, Search as SearchModel } from '@prisma/client'
 export class AppController {
 	constructor(private readonly appService: AppService) {}
 
+	@Get('search/')
+	getSearchAll(): Promise<SearchModel[]> {
+		return this.appService.searchAll()
+	}
+
 	@Get('search/:id')
 	getSearchById(@Param('id') id: string): Promise<SearchModel> {
 		return this.appService.search({ id: Number(id) })
