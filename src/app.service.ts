@@ -24,4 +24,12 @@ export class AppService {
 			data,
 		})
 	}
+
+	async delete(
+		userWhereUniqueInput: Prisma.SearchWhereUniqueInput
+	): Promise<Search | null> {
+		return this.prisma.search.delete({
+			where: userWhereUniqueInput,
+		})
+	}
 }
