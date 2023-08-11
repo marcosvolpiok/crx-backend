@@ -1,38 +1,10 @@
 {
 	"info": {
-		"_postman_id": "302d373e-5656-4b4e-ba2c-52a4c9445228",
+		"_postman_id": "030ecf37-365c-48f5-ab4b-70497ab43e86",
 		"name": "Legaltech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "POST",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\n    \"email\": \"hello@mark.com\",\n    \"name\": \"Mark\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"user"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "POST Search",
 			"request": {
@@ -62,7 +34,7 @@
 			"response": []
 		},
 		{
-			"name": "GET",
+			"name": "Search All",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -79,15 +51,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/1",
+					"raw": "http://localhost:3000/search/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"user",
-						"1"
+						"search",
+						""
 					]
 				}
 			},
@@ -120,6 +92,36 @@
 					"path": [
 						"search",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Search",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"email\": \"hello@mark.com\",\n    \"name\": \"Mark\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/search/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"2",
+						""
 					]
 				}
 			},
