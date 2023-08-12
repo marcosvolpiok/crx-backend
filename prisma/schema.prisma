@@ -33,4 +33,5 @@ model Result {
   coveredArea Int
   uncoveredArea Int
   category String
+  photoUrl String
 }
