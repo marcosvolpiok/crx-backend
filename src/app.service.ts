@@ -25,6 +25,20 @@ export class AppService {
 		})
 	}
 
+	async updateResultById(
+		resultWhereUniqueInput: Prisma.ResultWhereUniqueInput
+	): Promise<Result | null> {
+		return this.prisma.result.update({
+			where: {
+				bot_id: resultWhereUniqueInput.bot_id,
+				id: resultWhereUniqueInput.id,
+			},
+			data: {
+				status_id: resultWhereUniqueInput.status_id as string,
+			},
+		})
+	}
+
 	async searchAll(): Promise<Search[] | null> {
 		return this.prisma.search.findMany()
 	}

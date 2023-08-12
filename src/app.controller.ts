@@ -1,4 +1,4 @@
-import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common'
+import { Controller, Get, Delete, Param, Body, Post, Put } from '@nestjs/common'
 
 import { AppService } from './app.service'
 import { Search as SearchModel, Result as ResultModel } from '@prisma/client'
@@ -25,6 +25,19 @@ export class AppController {
 	@Get('api/user/real-state/results/:botId')
 	getResultsById(@Param('botId') id: string): Promise<ResultModel[]> {
 		return this.appService.getResultsById({ id: Number(id) })
+	}
+
+	@Put('api/user/real-state/results/:botId/:id')
+	updateResultById(
+		@Param('id') id: number,
+		@Param('botId') bot_id: number,
+		@Body('statusId') status_id: string
+	): Promise<ResultModel> {
+		return this.appService.updateResultById({
+			id: Number(id),
+			bot_id: Number(bot_id),
+			status_id: String(status_id),
+		})
 	}
 
 	@Post('search')

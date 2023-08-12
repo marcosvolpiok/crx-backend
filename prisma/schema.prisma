@@ -26,7 +26,7 @@ model Result {
   title String
   price Int
   price_history String
-  status String
+  status_id String
   address_line String
   neighborhood_name String
   totalArea Int
