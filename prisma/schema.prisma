@@ -18,3 +18,19 @@ model Search {
   type String
   label String
 }
+
+model Result {
+  id    Int     @default(autoincrement()) @id
+  bot_id Int
+  url String
+  title String
+  price Int
+  price_history String
+  status String
+  address_line String
+  neighborhood_name String
+  totalArea Int
+  coveredArea Int
+  uncoveredArea Int
+  category String
+}

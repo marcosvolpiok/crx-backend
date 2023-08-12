@@ -1,4 +1,4 @@
-import { Prisma, Search, User } from '@prisma/client'
+import { Prisma, Result, Search } from '@prisma/client'
 
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
@@ -12,6 +12,16 @@ export class AppService {
 	): Promise<Search | null> {
 		return this.prisma.search.findUnique({
 			where: userWhereUniqueInput,
+		})
+	}
+
+	async getResultsById(
+		resultWhereUniqueInput: Prisma.ResultWhereUniqueInput
+	): Promise<Result[] | null> {
+		return this.prisma.result.findMany({
+			where: {
+				bot_id: resultWhereUniqueInput.id,
+			},
 		})
 	}
 

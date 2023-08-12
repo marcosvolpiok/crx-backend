@@ -1,7 +1,7 @@
 import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common'
 
 import { AppService } from './app.service'
-import { User as UserModel, Search as SearchModel } from '@prisma/client'
+import { Search as SearchModel, Result as ResultModel } from '@prisma/client'
 
 @Controller()
 export class AppController {
@@ -20,6 +20,11 @@ export class AppController {
 	@Delete('search/:id')
 	deleteSearchById(@Param('id') id: string): Promise<SearchModel> {
 		return this.appService.delete({ id: Number(id) })
+	}
+
+	@Get('api/user/real-state/results/:botId')
+	getResultsById(@Param('botId') id: string): Promise<ResultModel[]> {
+		return this.appService.getResultsById({ id: Number(id) })
 	}
 
 	@Post('search')
