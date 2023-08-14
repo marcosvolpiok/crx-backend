@@ -5,7 +5,7 @@ import { NestFactory } from '@nestjs/core'
 
 // eslint-disable-next-line func-style
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule),
+	const app = await NestFactory.create(AppModule, { cors: true }),
 		config = new DocumentBuilder()
 			.setTitle('Legaltech')
 			.setDescription('Legaltech backend')
