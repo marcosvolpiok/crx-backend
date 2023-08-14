@@ -8,22 +8,22 @@ export class BotController {
 	constructor(private readonly botService: BotService) {}
 
 	@Get('api/user/real-estate/bot')
-	getSearchAll(): Promise<SearchModel[]> {
-		return this.botService.searchAll()
+	bot(): Promise<SearchModel[]> {
+		return this.botService.bot()
 	}
 
 	@Get('api/user/real-estate/bot/:id')
-	getSearchById(@Param('id') id: string): Promise<SearchModel> {
-		return this.botService.search({ id: Number(id) })
+	botById(@Param('id') id: string): Promise<SearchModel> {
+		return this.botService.botById({ id: Number(id) })
 	}
 
 	@Delete('api/user/real-estate/bot/:id')
-	deleteSearchById(@Param('id') id: string): Promise<SearchModel> {
+	delete(@Param('id') id: string): Promise<SearchModel> {
 		return this.botService.delete({ id: Number(id) })
 	}
 
 	@Post('api/user/real-estate/bot/')
-	createSearch(
+	create(
 		@Body()
 		searchData: {
 			priceMin: number
@@ -33,6 +33,6 @@ export class BotController {
 			label: string
 		}
 	): Promise<SearchModel> {
-		return this.botService.createSearch(searchData)
+		return this.botService.create(searchData)
 	}
 }

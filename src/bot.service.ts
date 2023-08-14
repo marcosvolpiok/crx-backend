@@ -7,7 +7,7 @@ import { PrismaService } from './prisma.service'
 export class BotService {
 	constructor(private prisma: PrismaService) {}
 
-	async search(
+	async botById(
 		userWhereUniqueInput: Prisma.SearchWhereUniqueInput
 	): Promise<Search | null> {
 		return this.prisma.search.findUnique({
@@ -15,11 +15,11 @@ export class BotService {
 		})
 	}
 
-	async searchAll(): Promise<Search[] | null> {
+	async bot(): Promise<Search[] | null> {
 		return this.prisma.search.findMany()
 	}
 
-	async createSearch(data: any): Promise<Search> {
+	async create(data: any): Promise<Search> {
 		return this.prisma.search.create({
 			data,
 		})

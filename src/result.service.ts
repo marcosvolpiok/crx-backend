@@ -7,7 +7,7 @@ import { PrismaService } from './prisma.service'
 export class ResultService {
 	constructor(private prisma: PrismaService) {}
 
-	async getResultsById(
+	async resultByBotId(
 		resultWhereUniqueInput: Prisma.ResultWhereUniqueInput
 	): Promise<Result[] | null> {
 		return this.prisma.result.findMany({
@@ -17,7 +17,7 @@ export class ResultService {
 		})
 	}
 
-	async updateResultById(
+	async update(
 		resultWhereUniqueInput: Prisma.ResultWhereUniqueInput
 	): Promise<Result | null> {
 		return this.prisma.result.update({
