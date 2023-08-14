@@ -40,7 +40,7 @@ export class AppController {
 		})
 	}
 
-	@Post('api/user/real-estate/results')
+	@Post('api/user/real-estate/bot/')
 	createSearch(
 		@Body()
 		searchData: {
