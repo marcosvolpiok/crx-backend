@@ -1,25 +1,25 @@
 import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common'
 
-import { AppService } from './app.service'
+import { BotService } from './bot.service'
 import { Search as SearchModel } from '@prisma/client'
 
 @Controller()
 export class BotController {
-	constructor(private readonly appService: AppService) {}
+	constructor(private readonly botService: BotService) {}
 
 	@Get('api/user/real-estate/bot')
 	getSearchAll(): Promise<SearchModel[]> {
-		return this.appService.searchAll()
+		return this.botService.searchAll()
 	}
 
 	@Get('api/user/real-estate/bot/:id')
 	getSearchById(@Param('id') id: string): Promise<SearchModel> {
-		return this.appService.search({ id: Number(id) })
+		return this.botService.search({ id: Number(id) })
 	}
 
 	@Delete('api/user/real-estate/bot/:id')
 	deleteSearchById(@Param('id') id: string): Promise<SearchModel> {
-		return this.appService.delete({ id: Number(id) })
+		return this.botService.delete({ id: Number(id) })
 	}
 
 	@Post('api/user/real-estate/bot/')
@@ -33,6 +33,6 @@ export class BotController {
 			label: string
 		}
 	): Promise<SearchModel> {
-		return this.appService.createSearch(searchData)
+		return this.botService.createSearch(searchData)
 	}
 }

@@ -1,19 +1,11 @@
-import { Prisma, Result, Search } from '@prisma/client'
+import { Prisma, Result } from '@prisma/client'
 
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
 
 @Injectable()
-export class AppService {
+export class ResultService {
 	constructor(private prisma: PrismaService) {}
-
-	async search(
-		userWhereUniqueInput: Prisma.SearchWhereUniqueInput
-	): Promise<Search | null> {
-		return this.prisma.search.findUnique({
-			where: userWhereUniqueInput,
-		})
-	}
 
 	async getResultsById(
 		resultWhereUniqueInput: Prisma.ResultWhereUniqueInput
@@ -36,24 +28,6 @@ export class AppService {
 			data: {
 				status_id: resultWhereUniqueInput.status_id as string,
 			},
-		})
-	}
-
-	async searchAll(): Promise<Search[] | null> {
-		return this.prisma.search.findMany()
-	}
-
-	async createSearch(data: any): Promise<Search> {
-		return this.prisma.search.create({
-			data,
-		})
-	}
-
-	async delete(
-		userWhereUniqueInput: Prisma.SearchWhereUniqueInput
-	): Promise<Search | null> {
-		return this.prisma.search.delete({
-			where: userWhereUniqueInput,
 		})
 	}
 }
