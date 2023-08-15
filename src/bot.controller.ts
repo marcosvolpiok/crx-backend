@@ -2,11 +2,26 @@ import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common'
 
 import { BotService } from './bot.service'
 import { Search as SearchModel } from '@prisma/client'
+import { ApiOkResponse } from '@nestjs/swagger'
+
+class Bot {
+	public name: string
+	public id: number
+	public priceMin: number
+	public priceMax: number
+	public rooms: number
+	public label: number
+}
 
 @Controller()
 export class BotController {
 	constructor(private readonly botService: BotService) {}
 
+	@ApiOkResponse({
+		description: 'The bot records',
+		type: Bot,
+		isArray: true,
+	})
 	@Get('api/user/real-estate/bot')
 	bot(): Promise<SearchModel[]> {
 		return this.botService.bot()
