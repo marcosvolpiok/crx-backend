@@ -2,7 +2,7 @@ import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common'
 
 import { BotService } from './bot.service'
 import { Search as SearchModel } from '@prisma/client'
-import { ApiOkResponse } from '@nestjs/swagger'
+import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
 
 class Bot {
 	public name: string
@@ -48,6 +48,46 @@ export class BotController {
 	@ApiOkResponse({
 		description: 'The bot records',
 		type: Bot,
+	})
+	@ApiParam({
+		name: 'priceMin',
+		required: true,
+		description: 'Minimum price',
+		schema: {
+			type: 'number',
+		},
+	})
+	@ApiParam({
+		name: 'priceMax',
+		required: true,
+		description: 'Maximum price',
+		schema: {
+			type: 'number',
+		},
+	})
+	@ApiParam({
+		name: 'rooms',
+		required: true,
+		description: 'Quantity of rooms',
+		schema: {
+			type: 'string',
+		},
+	})
+	@ApiParam({
+		name: 'type',
+		required: true,
+		description: 'type of flat',
+		schema: {
+			type: 'string',
+		},
+	})
+	@ApiParam({
+		name: 'label',
+		required: true,
+		description: 'label of the bot',
+		schema: {
+			type: 'string',
+		},
 	})
 	@Post('api/user/real-estate/bot/')
 	create(

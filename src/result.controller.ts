@@ -2,7 +2,7 @@ import { Controller, Get, Param, Body, Put } from '@nestjs/common'
 
 import { ResultService } from './result.service'
 import { Result as ResultModel } from '@prisma/client'
-import { ApiOkResponse } from '@nestjs/swagger'
+import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
 
 class Result {
 	public id: number
@@ -37,6 +37,14 @@ export class ResultController {
 	@ApiOkResponse({
 		description: 'The result records',
 		type: Result,
+	})
+	@ApiParam({
+		name: 'statusId',
+		required: true,
+		description: 'New status Id',
+		schema: {
+			type: 'string',
+		},
 	})
 	@Put('api/user/real-estate/results/:botId/:id')
 	update(
