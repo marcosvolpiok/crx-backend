@@ -2,15 +2,23 @@ import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common'
 
 import { BotService } from './bot.service'
 import { Search as SearchModel } from '@prisma/client'
-import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
+import { ApiOkResponse, ApiProperty } from '@nestjs/swagger'
 
 class Bot {
-	public name: string
-	public id: number
-	public priceMin: number
-	public priceMax: number
-	public rooms: number
-	public label: number
+	@ApiProperty({ type: String })
+	label: string
+
+	@ApiProperty({ type: String })
+	type: string
+
+	@ApiProperty({ type: String })
+	rooms: string
+
+	@ApiProperty({ type: Number, format: 'int64' })
+	priceMax: number
+
+	@ApiProperty({ type: Number, format: 'int64' })
+	priceMin: number
 }
 
 @Controller()
@@ -49,57 +57,11 @@ export class BotController {
 		description: 'The bot records',
 		type: Bot,
 	})
-	@ApiParam({
-		name: 'priceMin',
-		required: true,
-		description: 'Minimum price',
-		schema: {
-			type: 'number',
-		},
-	})
-	@ApiParam({
-		name: 'priceMax',
-		required: true,
-		description: 'Maximum price',
-		schema: {
-			type: 'number',
-		},
-	})
-	@ApiParam({
-		name: 'rooms',
-		required: true,
-		description: 'Quantity of rooms',
-		schema: {
-			type: 'string',
-		},
-	})
-	@ApiParam({
-		name: 'type',
-		required: true,
-		description: 'type of flat',
-		schema: {
-			type: 'string',
-		},
-	})
-	@ApiParam({
-		name: 'label',
-		required: true,
-		description: 'label of the bot',
-		schema: {
-			type: 'string',
-		},
-	})
 	@Post('api/user/real-estate/bot/')
 	create(
 		@Body()
-		searchData: {
-			priceMin: number
-			priceMax: number
-			rooms: string
-			type: string
-			label: string
-		}
+		bot: Bot
 	): Promise<SearchModel> {
-		return this.botService.create(searchData)
+		return this.botService.create(bot)
 	}
 }
