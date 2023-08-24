@@ -38,8 +38,8 @@ export class CognitoService {
     return client.send(command);
   };
 
-  create({ password, email }) {
-    const result = this.signUp({
+  async create({ password, email }) {
+    const result = await this.signUp({
       clientId: '2akia7kk2d3a2gb15l8ce4s50h',
       username: email,
       password: password,

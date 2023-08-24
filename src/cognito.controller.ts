@@ -11,19 +11,26 @@ class User {
   password: string;
 }
 
+class UserResponse {
+  @ApiProperty({ type: String })
+  UserSub: string;
+}
+
 @Controller()
 export class CognitoController {
   constructor(private readonly cognitoService: CognitoService) {}
 
   @ApiOkResponse({
     description: 'The User records',
-    type: User,
+    type: UserResponse,
   })
   @Post('api/user/')
-  create(
+  async create(
     @Body()
     user: User,
-  ): any {
-    return this.cognitoService.create(user);
+  ): Promise<any> {
+    const result = await this.cognitoService.create(user);
+    console.log('resuiltttt', result);
+    return { UserSub: result.UserSub };
   }
 }
