@@ -1,10 +1,10 @@
+import { CognitoController } from './cognito.controller';
+import { CognitoService } from './cognito.service';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [CognitoController],
+  providers: [CognitoService],
 })
 export class AppModule {}
