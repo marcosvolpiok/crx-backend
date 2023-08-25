@@ -1,4 +1,12 @@
-import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Delete,
+  Param,
+  Body,
+  Post,
+  HttpCode,
+} from '@nestjs/common';
 
 import { CognitoService } from './cognito.service';
 import {
@@ -60,6 +68,7 @@ export class CognitoController {
     description: 'The User records',
     type: UserAuthResponse,
   })
+  @HttpCode(200)
   @Post('api/user/auth/')
   async auth(
     @Body()
