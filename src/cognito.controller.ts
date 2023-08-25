@@ -20,6 +20,25 @@ class UserResponse {
   UserSub: string;
 }
 
+class UserAuthResponse {
+  @ApiProperty({ type: String })
+  UserSub: string;
+
+  @ApiProperty({ type: String })
+  AccessToken: string;
+
+  @ApiProperty({ type: String })
+  ExpiresIn: string;
+
+  @ApiProperty({ type: String })
+  IdToken: string;
+
+  @ApiProperty({ type: String })
+  RefreshToken: string;
+
+  @ApiProperty({ type: String })
+  TokenType: string;
+}
 @Controller()
 export class CognitoController {
   constructor(private readonly cognitoService: CognitoService) {}
@@ -34,7 +53,25 @@ export class CognitoController {
     user: User,
   ): Promise<any> {
     const result = await this.cognitoService.create(user);
-    console.log('resuiltttt', result);
     return { UserSub: result.UserSub };
+  }
+
+  @ApiOkResponse({
+    description: 'The User records',
+    type: UserAuthResponse,
+  })
+  @Post('api/user/auth/')
+  async auth(
+    @Body()
+    user: User,
+  ): Promise<any> {
+    const result = await this.cognitoService.initiateAuth(user);
+    return {
+      AccessToken: result.AuthenticationResult.AccessToken,
+      ExpiresIn: result.AuthenticationResult.ExpiresIn,
+      IdToken: result.AuthenticationResult.IdToken,
+      RefreshToken: result.AuthenticationResult.RefreshToken,
+      TokenType: result.AuthenticationResult.TokenType,
+    };
   }
 }
