@@ -1,7 +1,11 @@
 import { Controller, Get, Delete, Param, Body, Post } from '@nestjs/common';
 
 import { CognitoService } from './cognito.service';
-import { ApiOkResponse, ApiProperty } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiCreatedResponse,
+  ApiProperty,
+} from '@nestjs/swagger';
 
 class User {
   @ApiProperty({ type: String })
@@ -20,7 +24,7 @@ class UserResponse {
 export class CognitoController {
   constructor(private readonly cognitoService: CognitoService) {}
 
-  @ApiOkResponse({
+  @ApiCreatedResponse({
     description: 'The User records',
     type: UserResponse,
   })
